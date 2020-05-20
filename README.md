@@ -1,11 +1,19 @@
 # CRM CRUD Demo
-Spring CRM CRUD demo with Spring Security and MySQL as DB
+This is Spring Boot CRM CRUD demo:
+* Used Spring Security for login and basic authentication.
+* MySQL as DB
+* Used Spring Boot for the other part of the code.
+* 3 Tables are created.
+* ROLE BASED ACCESS to view and edit items in the customer db.
+* Roles are ADMIN, MANAGER & EMPLOYEE
+* Pagination of the content and sorted display of the content is also supported.
 
-The code runs on the localhost
+The code runs on the localhost at port 5000
 Below are important changes made in the application.properties 
 server.port=5000
 
-I am using two separate MySQL databases.
+## DB Info
+Used using two separate MySQL databases.
 1. First database is used to store secure data used in customer login and logout.    
    Database url : security.datasource.jdbc-url=jdbc:mysql://localhost:3306/spring_security_demo_bcrypt?useSSL=false&serverTimezone=UTC
 
@@ -35,15 +43,15 @@ The endpoints are as follows:
 
 http://localhost:5000/api/customers/   (GET API)
 
-http://localhost:5000/api/listPageable?page=0&size=5&sort=lastName
+http://localhost:5000/api/listPageable?page=0&size=5&sort=lastName   (GET API to demo the pagination and sorting)
 
 http://localhost:5000/api/customers/   (Put or Update API)
 
-http://localhost:5000/api/customers/1    (GET INDIVIDUAL DETAIL OF CUSTOMER)
+http://localhost:5000/api/customers/1    (GET INDIVIDUAL DETAIL OF CUSTOMER => id =1)
 
-http://localhost:5000/api/searchCustomer/man
+http://localhost:5000/api/searchCustomer/man     (GET API showing the search on the customer database string searched => man)
 
-http://localhost:5000/api/customers/1     (DELETE INDIVIDUAL ENTRY FROM DB)
+http://localhost:5000/api/customers/1     (DELETE INDIVIDUAL ENTRY FROM DB => id =1 )
 
 
 I have used JPA and Hibernate and Simple Query DAO Implmentation class.
@@ -53,6 +61,10 @@ PREREQUSITE:
 2. MySQL DB should be installed in the system.
 One needs to run below DB scripts:
 
+
+--
+-- Table structure for table `users`
+--
 ```sql
 CREATE DATABASE  IF NOT EXISTS `web_customer_tracker` 
 
@@ -89,7 +101,12 @@ CREATE TABLE `users` (
 	`enabled` tinyint(1) NOT NULL,
 	PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
 
+--
+-- Table 'authorities'
+--
+```sql
 DROP TABLE IF EXISTS `authorities`;
 
 CREATE TABLE `authorities` (
