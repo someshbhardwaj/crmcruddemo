@@ -61,20 +61,14 @@ USE `web_customer_tracker`;
 DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  
-  `first_name` varchar(45) DEFAULT NULL,
-  
-  `last_name` varchar(45) DEFAULT NULL,
-  
-  `email` varchar(45) DEFAULT NULL,
-  
-  PRIMARY KEY (`id`)
-
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`first_name` varchar(45) DEFAULT NULL,
+	`last_name` varchar(45) DEFAULT NULL,
+	`email` varchar(45) DEFAULT NULL,
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
-
 
 DROP DATABASE  IF EXISTS `spring_security_demo_bcrypt`;
 
@@ -90,30 +84,19 @@ USE `spring_security_demo_bcrypt`;
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-
-  `username` varchar(50) NOT NULL,
-
-`password` char(68) NOT NULL,
-
-`enabled` tinyint(1) NOT NULL,
-
-PRIMARY KEY (`username`)
-
+	`username` varchar(50) NOT NULL,
+	`password` char(68) NOT NULL,
+	`enabled` tinyint(1) NOT NULL,
+	PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 DROP TABLE IF EXISTS `authorities`;
 
 CREATE TABLE `authorities` (
-
-`username` varchar(50) NOT NULL,
-
-`authority` varchar(50) NOT NULL,
-
-UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
-
-CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-
+	`username` varchar(50) NOT NULL,
+	`authority` varchar(50) NOT NULL,
+	UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
+	CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ```
 
@@ -126,32 +109,19 @@ See the sample code of the check made:
 
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/api/customers").hasRole("EMPLOYEE")
-    
 		.antMatchers(HttpMethod.GET, "/api/customers/**").hasRole("EMPLOYEE")
-		
-    .antMatchers(HttpMethod.POST, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
-		
-    .antMatchers(HttpMethod.POST, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
-		
-    .antMatchers(HttpMethod.PUT, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
-		
-    .antMatchers(HttpMethod.PUT, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
-		
-    .antMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
-		
-    .antMatchers(HttpMethod.GET, "/api/searchCustomer/**").hasAnyRole("ADMIN", "MANAGER")
-		
-    .antMatchers(HttpMethod.GET,"/api/listPageable/**").hasAnyRole("ADMIN","MANAGER")
-		
-.and()
-
-.httpBasic()
-
-.and()
-
-.csrf().disable()
-
-.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		.antMatchers(HttpMethod.POST, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
+		.antMatchers(HttpMethod.PUT, "/api/customers").hasAnyRole("MANAGER", "ADMIN")
+		.antMatchers(HttpMethod.PUT, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
+		.antMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/api/searchCustomer/**").hasAnyRole("ADMIN", "MANAGER")
+		.antMatchers(HttpMethod.GET,"/api/listPageable/**").hasAnyRole("ADMIN","MANAGER")
+		.and()
+		.httpBasic()
+		.and()
+		.csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 }
 ```
 
