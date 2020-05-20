@@ -129,8 +129,8 @@ The code also supports 3 concurrent sessions in the localhost
 ```java
 http.sessionManagement().maximumSessions(3);
 ```
-
-
+Search Query Image
+![Image of Search](https://github.com/someshbhardwaj/crmcruddemo/blob/master/Search.png)
 
 Hope this code is useful for you!!!
 
