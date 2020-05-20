@@ -53,6 +53,7 @@ PREREQUSITE:
 2. MySQL DB should be installed in the system.
 One needs to run below DB scripts:
 
+```
 CREATE DATABASE  IF NOT EXISTS `web_customer_tracker` 
 
 USE `web_customer_tracker`;
@@ -80,11 +81,12 @@ DROP DATABASE  IF EXISTS `spring_security_demo_bcrypt`;
 CREATE DATABASE  IF NOT EXISTS `spring_security_demo_bcrypt`;
 
 USE `spring_security_demo_bcrypt`;
+```
 
 --
 -- Table structure for table `users`
 --
-
+```
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
@@ -113,10 +115,12 @@ UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
 CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
 
 The user needs to have Correct ROLES to do operation on the Customer table.
 
 See the sample code of the check made:
+```java
 @Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -149,6 +153,7 @@ See the sample code of the check made:
 
 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 }
+```
 
 The code also supports 3 conurrent session in the localhost
 
