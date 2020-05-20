@@ -125,7 +125,7 @@ See the sample code of the check made:
 }
 ```
 
-The code also supports 3 conurrent session in the localhost
+The code also supports 3 concurrent sessions in the localhost
 ```java
 http.sessionManagement().maximumSessions(3);
 ```
