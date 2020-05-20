@@ -46,6 +46,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.PUT, "/api/customers/**").hasAnyRole("MANAGER", "ADMIN")
 		.antMatchers(HttpMethod.DELETE, "/api/customers/**").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/api/searchCustomer/**").hasAnyRole("ADMIN", "MANAGER")
+		.antMatchers(HttpMethod.GET,"/api/listPageable/**").hasAnyRole("ADMIN","MANAGER")
 		.and()
 		.httpBasic()
 		.and()
