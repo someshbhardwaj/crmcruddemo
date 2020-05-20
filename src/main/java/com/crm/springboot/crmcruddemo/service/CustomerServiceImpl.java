@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.crm.springboot.crmcruddemo.dao.CustomerDAO;
+import com.crm.springboot.crmcruddemo.dao.CustomerDAOJPA;
 //luv2code.springdemo.dao.CustomerDAO;
 import com.crm.springboot.crmcruddemo.entity.Customer;
 
@@ -16,7 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	
 	private CustomerDAO customerDAO;
-	
+	@Autowired
+	private CustomerDAOJPA daoJPA;
 	// need to inject customer dao
 	@Autowired
 	CustomerServiceImpl(@Qualifier("customerDAOHibernateImpl") CustomerDAO theCustomerDAO){
@@ -54,6 +58,13 @@ public class CustomerServiceImpl implements CustomerService {
 		System.out.println("Inside the Service Impl "+theSearchName);
 		return customerDAO.searchCustomers(theSearchName);
 	}
+	@Override
+	public Page<Customer> getAllCustomers(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return daoJPA.findAll(pageable);
+	}
+	
+	
 
 }
 

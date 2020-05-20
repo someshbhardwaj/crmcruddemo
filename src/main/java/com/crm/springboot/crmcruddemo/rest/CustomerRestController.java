@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -115,6 +117,13 @@ public class CustomerRestController {
 		System.out.println("the search variable:  "+theSearchName);
 		return customerService.searchCustomers(theSearchName);
 	
+	}
+	
+	//Code to add pagination
+	@GetMapping("/listPageable")
+	Page<Customer> customerPageable(Pageable pageable) {
+		return customerService.getAllCustomers(pageable);
+
 	}
 	
 }
