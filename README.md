@@ -63,7 +63,7 @@ One needs to run below DB scripts:
 
 
 --
--- Table structure for table `users`
+-- Table structure for table `customer`
 --
 ```sql
 CREATE DATABASE  IF NOT EXISTS `web_customer_tracker` 
@@ -148,6 +148,9 @@ http.sessionManagement().maximumSessions(3);
 ```
 Search Query Image
 ![Image of Search](https://github.com/someshbhardwaj/crmcruddemo/blob/master/Search.png)
+
+Pagination Query Image
+![Image of Pagination](https://github.com/someshbhardwaj/crmcruddemo/blob/master/pagination_sorting.png)
 
 Hope this code is useful for you!!!
 
