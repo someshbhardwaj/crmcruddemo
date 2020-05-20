@@ -53,7 +53,7 @@ PREREQUSITE:
 2. MySQL DB should be installed in the system.
 One needs to run below DB scripts:
 
-```
+```sql
 CREATE DATABASE  IF NOT EXISTS `web_customer_tracker` 
 
 USE `web_customer_tracker`;
@@ -86,7 +86,7 @@ USE `spring_security_demo_bcrypt`;
 --
 -- Table structure for table `users`
 --
-```
+```sql
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
@@ -156,9 +156,9 @@ See the sample code of the check made:
 ```
 
 The code also supports 3 conurrent session in the localhost
-
+```java
 http.sessionManagement().maximumSessions(3);
-
+```
 
 
 
