@@ -120,6 +120,7 @@ public class CustomerRestController {
 	}
 	
 	//Code to add pagination
+	//http://localhost:5000/api/listPageable?page=5&size=3&sort=firstName
 	@GetMapping("/listPageable")
 	Page<Customer> customerPageable(Pageable pageable) {
 		return customerService.getAllCustomers(pageable);
