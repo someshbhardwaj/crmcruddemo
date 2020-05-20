@@ -1,19 +1,16 @@
-# crumcruddemo
-Spring CRM Crud demo with Spring Security and MySQL as DB
+# CRM CRUD Demo
+Spring CRM CRUD demo with Spring Security and MySQL as DB
 
 The code runs on the localhost
 Below are important changes made in the application.properties 
 server.port=5000
 
-I am using two separate MySQL DB 
-1. For security (login and logout purpose)
-2. For the normal other interaction (customer data)
-URL for the DB is :
+I am using two separate MySQL databases.
+1. First database is used to store secure data used in customer login and logout.    
+   Database url : security.datasource.jdbc-url=jdbc:mysql://localhost:3306/spring_security_demo_bcrypt?useSSL=false&serverTimezone=UTC
 
-app.datasource.jdbc-url=jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false&serverTimezone=UTC
-
-security.datasource.jdbc-url=jdbc:mysql://localhost:3306/spring_security_demo_bcrypt?useSSL=false&serverTimezone=UTC
-
+2. Second data is used to store customer data.     
+  Database url : app.datasource.jdbc-url=jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false&serverTimezone=UTC
 
 I deployed this on AWS so you need to change them from localhost to the endpoint provided by the RDS instance in the AWS.
 
